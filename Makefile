@@ -1,17 +1,18 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=NetKeeper
+PKG_NAME:=netkeeper
 PKG_RELEASE:=1
+PKG_VERSION:=76ba26b
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
 
 
-define Package/NetKeeper
+define Package/netkeeper
 	SECTION:=utils
 	CATEGORY:=Utilities
-	TITLE:=NetKeeper
+	TITLE:=Netkeeper
 endef
 
 define Build/Prepare
@@ -19,10 +20,10 @@ define Build/Prepare
 	$(CP) ./src/* $(PKG_BUILD_DIR)/
 endef
 
-define Package/NetKeeper/install
+define Package/netkeeper/install
 	$(INSTALL_DIR) $(1)/usr/lib/pppd/2.4.7
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/*.so $(1)/usr/lib/pppd/2.4.7
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/builds/*.so $(1)/usr/lib/pppd/2.4.7
 endef
 
-$(eval $(call BuildPackage,NetKeeper))
+$(eval $(call BuildPackage,$(PKG_NAME)))
 
